@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>پنل نماینده</title></head>
+<body>
+<h1>خوش‌آمدید {{ user.username }}</h1>
+<h3>اعتبار: {{ user.reseller.balance }} تومان</h3>
+<table border="1">
+<tr><th>نام کاربری</th><th>پروتکل</th><th>مصرف</th><th>انقضا</th></tr>
+{% for user in users %}
+<tr>
+<td>{{ user.username }}</td><td>{{ user.protocol }}</td><td>{{ user.traffic_used_mb }} MB</td><td>{{ user.expire_at }}</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>
