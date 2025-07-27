@@ -1,54 +1,16 @@
 <!DOCTYPE html>
-<html lang="fa">
-<head>
-  <meta charset="UTF-8">
-  <title>VPN Control Panel</title>
-  <style>
-    body { font-family: sans-serif; background: #f9f9f9; padding: 2rem; }
-    h1 { color: #1f2937; }
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
-    a.button {
-      background-color: #3b82f6;
-      color: white;
-      padding: 10px 16px;
-      text-decoration: none;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
-  </style>
-</head>
+<html>
+<head><title>VPN Panel</title></head>
 <body>
-
-  <h1>VPN Control Panel</h1>
-  <a href="/create/" class="button">افزودن کاربر</a>
-
-  <h2>Users</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Username</th>
-        <th>Protocol</th>
-        <th>Server</th>
-        <th>Package</th>
-        <th>Usage</th>
-        <th>Expiry</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for user in users %}
-      <tr>
-        <td>{{ user.username }}</td>
-        <td>{{ user.protocol }}</td>
-        <td>{{ user.server.name }}</td>
-        <td>{{ user.package.name }} / {{ user.package.traffic_limit_mb|floatformat:0 }} MB</td>
-        <td>{{ user.traffic_used_mb }} MB</td>
-        <td>{{ user.expire_at|date:"Y-m-d" }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
+<h1>کاربران VPN</h1>
+<a href="/create/">افزودن کاربر</a>
+<table border="1">
+<tr><th>نام کاربری</th><th>پروتکل</th><th>سرور</th><th>انقضا</th><th>مصرف</th></tr>
+{% for user in users %}
+<tr>
+<td>{{ user.username }}</td><td>{{ user.protocol }}</td><td>{{ user.server.name }}</td><td>{{ user.expire_at }}</td><td>{{ user.traffic_used_mb }} MB</td>
+</tr>
+{% endfor %}
+</table>
 </body>
 </html>
